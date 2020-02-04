@@ -1,4 +1,9 @@
 const server = require("./src/app");
-server.listen(process.env.PORT, () => {
-  console.log("👤  User Service Started");
+
+var port = process.env.PORT || 3000;
+
+//console.log(`${port}`);
+
+server.listen(port, () => {
+    console.log("👤  User Service Started");
 });
