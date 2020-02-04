@@ -1,6 +1,18 @@
+# MANEJO DOCKER COMPOSE
+
+- sudo curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+- sudo chmod +x /usr/local/bin/docker-compose
+
+- sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+- docker-compose --version
+
+## inicializar las composicion de dependecias
+
+- docker-compose up --build
+
 # instalacion Docker
-
-
 
 1. `sudo apt install apt-transport-https ca-certificates curl software-properties-common`
 2. `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`

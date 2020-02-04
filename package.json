@@ -1,0 +1,11 @@
+{
+    "name": "service",
+    "version": "1.0.0",
+    "description": "proyecto de microservicios",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "MARLON ZAYRO ARIAS VARGAS",
+    "license": "ISC"
+}

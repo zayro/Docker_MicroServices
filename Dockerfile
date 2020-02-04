@@ -1,7 +1,5 @@
 FROM node
-ENV NODE_ENV production
-WORKDIR /usr/src/app
+COPY . /var/www
+WORKDIR /var/www
 RUN npm install
-COPY . .
-EXPOSE 8081
-CMD npm start
+ENTRYPOINT ["npm","start"]

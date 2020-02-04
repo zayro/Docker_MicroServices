@@ -3,8 +3,9 @@ version: '2.1'
 services:
   microservices:
     image: microservices
-    build: .
+    build: .     
     environment:
-      NODE_ENV: production
+      - PORT=5000
+      - JWT_SECRET=Sf2RFsdf234rsf234rsedfws
     ports:
-      - 8081:8081
+      - 5000:5000
