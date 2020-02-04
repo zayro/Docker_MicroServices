@@ -1,12 +1,12 @@
 {
-  "name": "service",
+  "name": "monolithic",
   "version": "1.0.0",
-  "description": "proyecto de microservicios",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "author": "MARLON ZAYRO ARIAS VARGAS",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
