@@ -1,5 +1,5 @@
 const server = require("./src/app");
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 4000;
 
 //console.log(`${port}`);
 

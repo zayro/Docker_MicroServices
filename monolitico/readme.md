@@ -1,6 +1,6 @@
 ## ejecutar sin construir el proyecto
 
-docker run -it --rm --name my-running-script -v "$PWD":/usr/src/app -w /usr/src/app node npm start
+docker run -it --rm --name my-running-script -v "$PWD":/usr/src/app -w /usr/src/app node npm cache clean --force npm start
 
 ## crea la imagen
 - docker build -t nodejs-monolithic .
@@ -13,9 +13,6 @@ docker run -it --rm --name my-running-script -v "$PWD":/usr/src/app -w /usr/src/
 ## corre la imagen
 docker run --name execute-nodejs-monolithic -it -p 4000:3000 nodejs-monolithic
 
-## ver docker images
-
-docker images
 
 ## eliminar images
 
