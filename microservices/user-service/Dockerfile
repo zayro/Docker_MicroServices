@@ -1,7 +1,9 @@
 FROM node
-COPY . /app
 WORKDIR /app
+COPY package*.json ./
 RUN npm install
-ENV PORT 3000
-EXPOSE 3000
+# Bundle app source
+COPY . .
+ENV PORT 5000
+EXPOSE 5000
 ENTRYPOINT ["npm", "start"]
