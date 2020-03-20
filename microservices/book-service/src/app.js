@@ -14,7 +14,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/api/v2/books", (req, res) => {
+app.get("/api/v1/books", (req, res) => {
   response.data.push("Soft Skills", "Clean Code", "Effective C#");
   logger("Get book data");
   return res.send(response);

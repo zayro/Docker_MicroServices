@@ -1,3 +1,5 @@
-docker build -t zayro/node-web-app .
+docker build -t zayro/user-service .
 
-docker run -p 5000:5000 -d zayro/node-web-app
+# port righ it's into server
+# port left it's into local
+docker run -p 5000:5000 -d zayro/user-service

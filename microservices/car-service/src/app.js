@@ -14,7 +14,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/api/v2/cars", (req, res) => {
+app.get("/api/v1/cars", (req, res) => {
   response.data.push("Ferrari", "Toyota", "Kia");
   logger("Get car data");
   return res.send(response);

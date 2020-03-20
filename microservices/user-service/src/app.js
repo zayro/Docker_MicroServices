@@ -14,7 +14,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/api/v2/users", (req, res) => {
+app.get("/api/v1/users", (req, res) => {
   response.data.push("Carlos", "Pedro", "Lucas");
   logger("Get user data");
   return res.send(response);
