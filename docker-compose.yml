@@ -2,12 +2,15 @@ version: "3"
 
 services:
   users:
+    container_name: user-service
     build: ./microservices/user-service
 
   cars:
+    container_name: car-service
     build: ./microservices/car-service
 
   books:
+    container_name: book-service
     build: ./microservices/book-service
 
   nginx:
