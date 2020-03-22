@@ -1,6 +1,7 @@
 version: "3"
 
 services:
+
   users:
     container_name: user-service
     build: ./microservices/user-service
@@ -13,13 +14,54 @@ services:
     container_name: book-service
     build: ./microservices/book-service
 
+  php:
+    image: php:7-fpm
+    container_name: php-service
+    volumes:
+      - ./microservices/php-service:/code 
+
+  mariadb:
+    image: mariadb:latest
+    container_name: db
+    restart: always
+    ports:
+      - "3309:3306"
+    environment:
+      MYSQL_DATABASE: acceso
+      MYSQL_ROOT_PASSWORD: zayro
+      MYSQL_USER: 'test'
+      MYSQL_PASS: 'pass'
+    volumes:
+      - data:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+
+  # WEBSERVER
   nginx:
     image: nginx:latest
+    container_name: webserver
     ports:
       - "8000:7000"
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - "81:80"
+    volumes:      
+      - ./microservices/php-service:/code
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/nginx.php.conf:/etc/nginx/conf.d/site.conf
     depends_on:
       - users
       - books
       - cars
+      
+    links:
+      - php
+      - mariadb
+
+# Volumes
+volumes:
+  data:    
+    driver: local      
+
+# Docker Networks
+networks:
+  app-network:
+    driver: bridge
+
