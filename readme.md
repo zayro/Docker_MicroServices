@@ -61,7 +61,7 @@ Enviar para pametros del Host a Docker Persistencia en data
 - docker app status my-ap
 
 ## docker compose
-
-- docker-compose up
+- docker-compose up  --build
+- docker-compose up 
 - docker-compose ps
 - docker-compose down

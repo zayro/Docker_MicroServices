@@ -16,10 +16,16 @@ services:
 
   php:
     image: php:7-fpm
-    container_name: php-service
+    container_name: php-service-container
     volumes:
-      - ./microservices/php-service:/code 
+      - ./microservices/php-service:/code
 
+  php-service:
+    container_name: php-service
+    build: ./microservices/php-service
+    
+
+  # DATABASE
   mariadb:
     image: mariadb:latest
     container_name: db
@@ -40,19 +46,22 @@ services:
     image: nginx:latest
     container_name: webserver
     ports:
-      - "8000:7000"
+      - "71:70"
       - "81:80"
+      - "91:90"
     volumes:      
       - ./microservices/php-service:/code
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/nginx.php.conf:/etc/nginx/conf.d/site.conf
+      - ./nginx/laravel.conf:/etc/nginx/conf.d/laravel.conf
     depends_on:
       - users
       - books
       - cars
+     
       
     links:
-      - php
+      - php        
       - mariadb
 
 # Volumes
