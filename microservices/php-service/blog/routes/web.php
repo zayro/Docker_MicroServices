@@ -12,5 +12,15 @@
 */
 
 $router->get('/', function () use ($router) {
+    return "Welcote to Api v1";
+});
+
+
+$router->get('/version', function () use ($router) {
     return $router->app->version();
+});
+
+
+$router->get('/test', function () use ($router) {
+    return print "test";
 });
