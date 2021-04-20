@@ -1,0 +1,58 @@
+{
+    "name": "laravel/lumen",
+    "description": "The Laravel Lumen Framework.",
+    "keywords": ["framework", "laravel", "lumen"],
+    "license": "MIT",
+    "type": "project",
+    "authors": [{
+        "name": "Marlon Zayro Arias Vargas",
+        "email": "zayro8905@gmail.com"
+    }],
+    "require": {
+        "php": ">=5.6.4",
+        "laravel/lumen-framework": "5.5.*",
+        "vlucas/phpdotenv": "~2.2",
+        "firebase/php-jwt": "^5.0",
+        "catfan/medoo": "^1.6",
+        "phpmailer/phpmailer": "dev-master",
+        "katzgrau/klogger": "dev-master",
+        "nesbot/carbon": "~1.18",
+        "codeguy/upload": "dev-master",
+        "gargron/fileupload": "~1.4.0",
+        "vluzrmos/lumen-cors": "2.1.*",
+        "mpdf/mpdf": "^8.0"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "phpunit/phpunit": "~6.0",
+        "mockery/mockery": "~0.9",
+        "flipbox/lumen-generator": "^5.6",
+        "sebastian/phpcpd": "*",
+        "friendsofphp/php-cs-fixer": "^2.0",
+        "phploc/phploc": "^4.0",
+        "mmucklo/krumo": "*",
+        "psy/psysh": "@stable",
+        "analog/analog": "dev-master",
+        "heroku/heroku-buildpack-php": "*"
+
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/",
+            "database/"
+        ]
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "optimize-autoloader": true
+}

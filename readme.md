@@ -20,7 +20,6 @@
 4. `apt-cache policy docker-ce`
 5. `sudo apt install docker-ce`
 
-
 ## Paso 2 — Ejecutar el comando Docker sin sudo (Opcional)
 
 1. sudo usermod -aG docker ${USER}
@@ -50,7 +49,6 @@ Enviar para pametros del Host a Docker Persistencia en data
 
 - sudo docker run -it --rm --name my-running-script -v "$PWD":/var/www -w /var/www node npm start
 
-
 -- iniciar
 
 - sudo systemctl enable docker
@@ -61,7 +59,9 @@ Enviar para pametros del Host a Docker Persistencia en data
 - docker app status my-ap
 
 ## docker compose
-- docker-compose up  --build
-- docker-compose up 
+
+- docker-compose up --build
+- docker-compose up
 - docker-compose ps
 - docker-compose down
+- docker-compose exec db bash
