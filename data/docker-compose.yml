@@ -5,7 +5,7 @@ services:
   # DATABASE
   db:
     image: mariadb:10.5.9
-    container_name: mariadb-10.5.9
+    container_name: database
     tty: true
     #restart: always
     ports:

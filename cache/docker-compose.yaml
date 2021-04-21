@@ -1,0 +1,21 @@
+version: "3"
+
+# Services
+services:
+  # DATABASE
+  cache:
+    image: redis:6.2
+    container_name: cache
+    tty: true
+    #restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+# Docker Networks
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
+    external: true
