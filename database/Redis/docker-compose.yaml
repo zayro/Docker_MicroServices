@@ -5,13 +5,23 @@ services:
   # DATABASE
   cache:
     image: redis:6.2
-    container_name: cache
+    container_name: redis
+    command: redis-server
     tty: true
     #restart: always
     ports:
       - "6379:6379"
+    volumes:
+      - app-cache:/data
     networks:
       - app-network
+
+# Volumes
+volumes:
+  app-cache:
+    #name: app-data
+    #driver: local
+    external: true
 
 # Docker Networks
 networks:

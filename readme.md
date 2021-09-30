@@ -1,6 +1,6 @@
 # MANEJO DOCKER COMPOSE
 
-- sudo curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+- sudo curl -L "<https://github.com/docker/compose/releases/download/1.25.3/docker-compose>-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
 - sudo chmod +x /usr/local/bin/docker-compose
 
@@ -12,7 +12,7 @@
 
 - docker-compose up --build
 
-# instalacion Docker
+## instalacion Docker Linux
 
 1. `sudo apt install apt-transport-https ca-certificates curl software-properties-common`
 2. `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
@@ -54,9 +54,13 @@ Enviar para pametros del Host a Docker Persistencia en data
 - sudo systemctl enable docker
 - sudo systemctl disable docker
 
-## configuracionde la aplicacion
+## configuracion de la aplicacion
 
 - docker app status my-ap
+
+## Create Red Docker
+
+- docker network create app-network
 
 ## docker compose
 

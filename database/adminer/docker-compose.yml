@@ -1,0 +1,28 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  adminerpg:
+    image: adminer
+    container_name: adminDatabase
+    restart: always
+    networks:
+      - app-network
+    ports:
+      - 8080:8080
+
+
+# Volumes
+volumes:
+  app-data-pg:
+    #name: app-data
+    #driver: local
+    external: true
+
+# Docker Networks
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
+    external: true

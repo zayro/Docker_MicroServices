@@ -1,26 +1,24 @@
-version: "3"
+# Use postgres/example user/password credentials
+version: '3.1'
 
-# Services
 services:
-  # DATABASE
   db:
-    image: mariadb:10.5.9
-    container_name: database
-    tty: true
+    image: postgres:13.4
     #restart: always
-    ports:
-      - "3306:3306"
+    container_name: pgdata
     environment:
-      MYSQL_ROOT_PASSWORD: zayro
+      POSTGRES_PASSWORD: zayro
+    ports:
+      - 5432:5432
     volumes:
-      - app-data:/var/lib/mysql
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - app-data-pg:/var/lib/postgresql/data
     networks:
       - app-network
 
+
 # Volumes
 volumes:
-  app-data:
+  app-data-pg:
     #name: app-data
     #driver: local
     external: true

@@ -1,0 +1,33 @@
+version: "3"
+
+# Services
+services:
+  # DATABASE
+  db:
+    image: mariadb:10.5.9
+    container_name: database
+    tty: true
+    #restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: zayro
+    volumes:
+      - app-data:/var/lib/mysql
+     # - ./conf/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
+
+# Volumes
+volumes:
+  app-data:
+    #name: app-data
+    #driver: local
+    external: true
+
+# Docker Networks
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
+    external: true
