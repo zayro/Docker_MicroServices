@@ -11,6 +11,20 @@
 ## inicializar las composicion de dependecias
 
 - docker-compose up --build
+- docker-compose up -d --no-build
+
+### finaliza el proceso del contenedor
+
+- docker-compose up stop client
+
+### Elimina  el proceso del contenedor
+
+- docker-compose up rm client
+
+### levanta el proceso del contenedor
+
+- docker-compose up client --build -d
+
 
 ## instalacion Docker Linux
 

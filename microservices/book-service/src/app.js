@@ -20,4 +20,20 @@ app.get("/api/v1/books", (req, res) => {
   return res.send(response);
 });
 
+
+app.get("/api/v1/books/headers", (req, res) => {
+
+    logger("init Request");
+
+    let showHeader = req.headers
+
+
+
+    logger(JSON.stringify(showHeader));
+
+    return res.send(response);
+  });
+
+
+
 module.exports = app;
