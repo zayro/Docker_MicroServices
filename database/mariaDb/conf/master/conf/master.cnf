@@ -1,0 +1,14 @@
+[mysqld]
+general_log = 1
+general_log_file = /var/lib/mysql/general.log
+
+log-bin                         # enable binary logging
+
+# Master Server Configuration
+server-id = 1
+log_bin=master-bin
+
+#bind-address    = *
+#skip-networking|
+
+#binlog-format=MIXED            #default

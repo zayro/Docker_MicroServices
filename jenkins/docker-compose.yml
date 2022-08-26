@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  appjenkins:
+    user: root
+    image: "jenkins/jenkins:latest"
+    ports:
+      - "8010:8080"
+    volumes:
+      #- ./jenkins_home:/var/jenkins_home:rw
+      - data-jenkins:/var/jenkins_home:rw
+    networks:
+      - app-network
+
+volumes:
+  data-jenkins:
+    #name: app-data
+    #driver: local
+    external: true
+
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
+    external: true

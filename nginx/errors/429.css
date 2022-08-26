@@ -1,0 +1,12 @@
+body {
+    background: linear-gradient(132deg, rgba(184,231,209,1) 35%, rgba(0,255,190,1) 100%);
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    font-family: 'Bangers', cursive;
+}

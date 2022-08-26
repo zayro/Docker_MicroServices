@@ -4,7 +4,8 @@ const app = express();
 const response = {
   data: [],
   services: "User Service",
-  architecture: "Microservices"
+  architecture: "Microservices",
+  ms: "node1"
 };
 
 const logger = message => console.log("[👤  User Service]: " + message);

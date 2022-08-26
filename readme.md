@@ -25,6 +25,10 @@
 
 - docker-compose up client --build -d
 
+### Escalar a multiples contenedores
+
+- docker-compose up -d --scale client=5
+
 
 ## instalacion Docker Linux
 
@@ -75,6 +79,7 @@ Enviar para pametros del Host a Docker Persistencia en data
 ## Create Red Docker
 
 - docker network create app-network
+- docker network inspect app-network
 
 ## docker compose
 
