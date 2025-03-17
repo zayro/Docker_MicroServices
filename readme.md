@@ -76,6 +76,10 @@ Enviar para pametros del Host a Docker Persistencia en data
 
 - docker app status my-ap
 
+## Crear Volumenes Docker
+
+- docker volume create app-data-oracle
+
 ## Create Red Docker
 
 - docker network create app-network
@@ -88,3 +92,6 @@ Enviar para pametros del Host a Docker Persistencia en data
 - docker-compose ps
 - docker-compose down
 - docker-compose exec db bash
+
+## Docker Build
+docker build -f dockerfile.ubuntu -t app .
