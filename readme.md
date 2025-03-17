@@ -79,6 +79,7 @@ Enviar para pametros del Host a Docker Persistencia en data
 ## Crear Volumenes Docker
 
 - docker volume create app-data-oracle
+- docker volume create postgres_data_airflow
 
 ## Create Red Docker
 
