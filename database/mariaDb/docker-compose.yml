@@ -1,0 +1,78 @@
+version: "3.9"
+
+# Services
+services:
+  # DATABASE
+
+  db:
+    image: mariadb:10.5.9
+    container_name: database
+    tty: true
+    #restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: zayro
+    restart: unless-stopped
+    volumes:
+      - app-data:/var/lib/mysql
+    networks:
+      - app-network
+  masterDb:
+    image: mariadb:10.5.9
+    container_name: database-master
+    tty: true
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: zayro
+    #restart: unless-stopped
+    volumes:
+      - app-data-master:/var/lib/mysql
+      - ./conf/master/conf:/etc/mysql/conf.d:rw
+      - ./conf/master/script:/script:rw
+      #- ./conf/master:/etc/mysql/conf.d
+      #- app-data-master:/etc/mysql/
+    #entrypoint: ["bash", "-c", "chown root etc/mysql/conf.d/master.cnf ", "chmod 755 etc/mysql/conf.d/master.cnf"]
+    #entrypoint: ["allow.sh"]
+
+
+    networks:
+      - app-network
+
+  slaveDb:
+    image: mariadb:10.5.9
+    container_name: database-slave-1
+    tty: true
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: zayro
+    restart: unless-stopped
+    volumes:
+      - app-data-slave:/var/lib/mysql
+      - ./conf/slave:/etc/mysql/conf.d:rw
+    networks:
+      - app-network
+
+
+# Volumes
+volumes:
+  app-data:
+    #name: app-data
+    #driver: local
+    external: true
+  app-data-slave:
+    #name: app-data
+    #driver: local
+    external: true
+  app-data-master:
+    #name: app-data
+    #driver: local
+    external: true
+# Docker Networks
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
+    external: true

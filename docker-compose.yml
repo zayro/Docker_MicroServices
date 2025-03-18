@@ -1,10 +1,68 @@
-version: '2.1'
+version: "3"
 
+# Services
 services:
-  microservices:
-    image: microservices
-    build: .
-    environment:
-      NODE_ENV: production
+  users:
+    build: ./microservices/user-service
+    restart: unless-stopped
+    image: user:v1
+    deploy:
+      replicas: 4
+      restart_policy:
+        max_attempts: 3
+        condition: on-failure
+      update_config:
+        parallelism: 3
+        delay: 10s
+    networks:
+      - app-network
+
+  cars:
+    container_name: car-service
+    build: ./microservices/car-service
+    networks:
+      - app-network
+
+  books:
+    container_name: book-service
+    build: ./microservices/book-service
+    networks:
+      - app-network
+
+  # BACKEND
+  backend:
+    build: ./microservices/backend-service
+    container_name: backend-service
+    tty: true
     ports:
-      - 8081:8081
+      - "8080:8080"
+    networks:
+      - app-network
+
+  # WEBSERVER
+  webserver:
+    image: nginx:1.19.9
+    container_name: apiGateway
+    tty: true
+    #restart: unless-stopped
+    ports:
+      - "71:70"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/errors:/etc/nginx/errors
+      - ./nginx/logs:/var/log/nginx
+      #- ./nginx/nginx.php.conf:/etc/nginx/conf.d/site.conf
+    networks:
+      - app-network
+    depends_on:
+      - users
+      - books
+      - cars
+      - backend
+
+# Docker Networks
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
+    external: true

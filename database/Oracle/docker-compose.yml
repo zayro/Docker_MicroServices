@@ -1,0 +1,31 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  db:
+    image: container-registry.oracle.com/database/free:latest
+    #restart: always
+    container_name: oracle-free
+    environment:
+      ORACLE_PWD: zayro
+    ports:
+      - 1521:1521
+    volumes:
+      - app-data-oracle:/opt/oracle/oradata
+    networks:
+      - app-network
+
+
+# Volumes
+volumes:
+  app-data-oracle:
+    #name: app-data
+    #driver: local
+    external: true
+
+# Docker Networks
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
+    external: true

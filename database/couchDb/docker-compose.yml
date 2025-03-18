@@ -1,0 +1,34 @@
+version: "3.9"
+
+# Services
+services:
+  # DATABASE
+  couchdb:
+    image: couchdb:3.3
+    container_name: couchdb
+    tty: true
+    #restart: always
+    environment:
+          - COUCHDB_USER=admin
+          - COUCHDB_PASSWORD=zayro1989
+    ports:
+      - "5984:5984"
+    volumes:
+      - app-data-couchdb:/opt/couchdb/data
+    networks:
+      - app-network
+
+# Volumes
+volumes:
+
+  app-data-couchdb:
+    #name: app-data
+    #driver: local
+    external: true
+
+# Docker Networks
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
+    external: true
