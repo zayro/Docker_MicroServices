@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 
 services:
   postgres:
@@ -11,9 +11,14 @@ services:
       - 5433:5432      
     volumes:
       - postgres_data_airflow:/var/lib/postgresql/data
+    networks:
+      - app-network
 
   webserver:
-    image: apache/airflow:2.1.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: apache/airflow:2.10.1-python3.11  # Especifica la versión de Python aquí
     depends_on:
       - postgres
     environment:
@@ -22,6 +27,10 @@ services:
       AIRFLOW__CORE__FERNET_KEY: 'GkRnVIdmuf5QEA4XBWbyeUB7P0vFEzDEm7llz-ul2R8='
       AIRFLOW__WEBSERVER__SECRET_KEY: 'GkRnVIdmuf5QEA4XBWbyeUB7P0vFEzDEm7llz-ul2R8='
       AIRFLOW__WEBSERVER__AUTH_BACKEND: 'airflow.contrib.auth.backends.password_auth'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
+      AIRFLOW__WEBSERVER__ALLOW_TEST_CONNECTION: 'True'  # Habilitar pruebas de conexión
+      AIRFLOW__WEBSERVER__ALLOW_TESTING_CONNECTIONS: 'True'
+      AIRFLOW__CORE__TEST_CONNECTION: 'True'
       _AIRFLOW_WWW_USER_USERNAME: 'admin'
       _AIRFLOW_WWW_USER_PASSWORD: 'admin'
       LANG: 'C.UTF-8'
@@ -37,9 +46,14 @@ services:
       airflow users create --username admin --password admin --firstname Zayro --lastname Arias --role Admin --email admin@example.com &&
       airflow webserver
       "
+    networks:
+      - app-network
 
   scheduler:
-    image: apache/airflow:2.1.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: apache/airflow:2.10.1-python3.11  
     depends_on:
       - webserver
     environment:
@@ -55,7 +69,15 @@ services:
       airflow db init &&
       airflow scheduler
       "
+    networks:
+      - app-network
 
 volumes:
   postgres_data_airflow:
+    external: true
+
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
     external: true
