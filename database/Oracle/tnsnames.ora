@@ -1,0 +1,36 @@
+ORCL =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = oracle-db)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = ORCL)
+    )
+  )
+
+free =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = oracle-db)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = free)
+    )
+  )
+
+remote_db =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = 172.18.0.2)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = free)
+    )
+  )
+
+
+oracle-db =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = oracle-db)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = free)
+    )
+  )
