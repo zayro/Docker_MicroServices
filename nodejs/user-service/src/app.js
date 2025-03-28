@@ -15,6 +15,13 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/", (req, res) => {
+  response.data.push("Users Service is running...");
+  logger("Get Users service status");
+  return res.send(response);
+});
+
+
 app.get("/api/v1/users", (req, res) => {
   response.data.push("Carlos", "Pedro", "Lucas");
   logger("Get user data");

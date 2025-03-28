@@ -1,54 +1,33 @@
-version: "3"
+version: "3.8"
 
 # Services
 services:
   users:
+    container_name: user-service
     build: ./user-service
-    restart: unless-stopped
-    image: user:v1
-    deploy:
-      replicas: 4
-      restart_policy:
-        max_attempts: 3
-        condition: on-failure
-      update_config:
-        parallelism: 3
-        delay: 10s
     networks:
-      - app-network
-
+      app-network:
+        aliases:
+          - user_service
   cars:
     container_name: car-service
     build: ./car-service
     networks:
-      - app-network
+      app-network:
+        aliases:
+          - car_service
 
   books:
+    build:
+      context: ./book-service
+      dockerfile: Dockerfile  
     container_name: book-service
-    build: ./book-service
-    networks:
-      - app-network
-
-
-  # WEBSERVER
-  webserver:
-    image: nginx:1.19.9
-    container_name: apiGateway
-    tty: true
-    #restart: unless-stopped
     ports:
-      - "71:70"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./nginx/errors:/etc/nginx/errors
-      - ./nginx/logs:/var/log/nginx
-      #- ./nginx/nginx.php.conf:/etc/nginx/conf.d/site.conf
+      - "3000:3000"    
     networks:
-      - app-network
-    depends_on:
-      - users
-      - books
-      - cars
+      app-network:
+        aliases:
+          - book_service
 
 # Docker Networks
 networks:
