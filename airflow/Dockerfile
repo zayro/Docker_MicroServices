@@ -52,7 +52,7 @@ RUN sudo python -m pip install --upgrade pip && \
     sudo python -m pip install --upgrade setuptools wheel && \
     sudo python -m pip install oracledb  && \
     sudo python -m pip install apache-airflow-providers-oracle && \
-    sudo python -m pip install cx_Oracle \
+    sudo python -m pip install cx_Oracle && \
     sudo python -m pip install openpyxl
     
 
