@@ -17,6 +17,8 @@ COPY requirements.txt /opt/airflow/requirements.txt
 
 COPY local /opt/airflow/
 
+COPY config/airflow.cfg /opt/airflow/
+
 # Copiar el archivo Oracle Instant Client al contenedor
 COPY instantclient-basic-linux.x64-21.17.0.0.0dbru.zip /tmp/instantclient-basic-linux.x64-21.17.0.0.0dbru.zip
 
@@ -50,7 +52,8 @@ RUN sudo python -m pip install --upgrade pip && \
     sudo python -m pip install --upgrade setuptools wheel && \
     sudo python -m pip install oracledb  && \
     sudo python -m pip install apache-airflow-providers-oracle && \
-    sudo python -m pip install cx_Oracle
+    sudo python -m pip install cx_Oracle \
+    sudo python -m pip install openpyxl
     
 
 RUN sudo pip install --no-cache-dir -r /opt/airflow/requirements.txt

@@ -38,6 +38,7 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
+      - ./airflow_local_settings.py:/opt/airflow/config/airflow_local_settings.py # Mount custom logging config
     ports:
       - "8080:8080"
     command: >
@@ -64,6 +65,7 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
+      - ./airflow_local_settings.py:/opt/airflow/config/airflow_local_settings.py # Mount custom logging config
     command: >
       bash -c "
       airflow db init &&
