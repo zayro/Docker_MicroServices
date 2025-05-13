@@ -96,3 +96,9 @@ Enviar para pametros del Host a Docker Persistencia en data
 
 ## Docker Build
 docker build -f dockerfile.ubuntu -t app .
+
+## Docker Images
+
+- docker images -a
+- docker rmi -f $(docker images -a -q)
+

@@ -12,13 +12,13 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - app-cache:/data
+      - app-data-redis:/data
     networks:
       - app-network
 
 # Volumes
 volumes:
-  app-cache:
+  app-data-redis:
     #name: app-data
     #driver: local
     external: true
